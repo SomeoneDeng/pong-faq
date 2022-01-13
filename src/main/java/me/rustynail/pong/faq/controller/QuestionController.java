@@ -11,10 +11,7 @@ import me.rustynail.pong.faq.mapper.CategoryMapper;
 import me.rustynail.pong.faq.mapper.QuestionMapper;
 import me.rustynail.pong.faq.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 
@@ -74,6 +71,13 @@ public class QuestionController {
 
                     return questionVO;
                 });
+    }
+
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        this.questionMapper.deleteById(id);
+        return "ok";
     }
 
 }
